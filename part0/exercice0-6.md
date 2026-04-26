@@ -30,7 +30,7 @@ sequenceDiagram
 
     Note right of browser: User add new note and save the note
 
-    Note right of browser: excuting javascript code to append new note ton HTML
+    Note right of browser: excuting javascript code to append new note on HTML
 
     browser ->> server : POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa 
 
