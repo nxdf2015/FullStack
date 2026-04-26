@@ -34,6 +34,7 @@ sequenceDiagram
     Note over browser,server : payload new note
 
     loop server ->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    end 
     activate server
     server-->>browser: HTML document
     deactivate server
