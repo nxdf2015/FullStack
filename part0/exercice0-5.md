@@ -36,4 +36,4 @@ sequenceDiagram
 
     note over browser,server : payload {content : new note , date : } 
 
-    server ->> browser : {"message":"note created"}
+    server -->> browser : {"message":"note created"}
