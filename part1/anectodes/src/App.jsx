@@ -38,11 +38,13 @@ const App = () => {
       <p>
         {anecdotes[selected]}
         </p>
+        <p>has {votes[selected]} votes</p>
       <button onClick={() => handlerVote(selected)}>vote</button>
       <button onClick={handlerNext}>next anecdote</button>
       
       <h1>Anecdote with most votes</h1>
       {anecdotes[idMaxVote]}
+       <p>has {votes[idMaxVote]} votes</p>
     </div>
   )
 }
