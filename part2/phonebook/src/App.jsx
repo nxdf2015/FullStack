@@ -14,20 +14,26 @@ const App = () => {
   
   const [filter, setFilter] = useState("")
 
-   
+
+ const baseURL = "http://localhost:3001/persons" 
  useEffect(() => {
-      axios.get("http://localhost:3001/persons")
+      axios.get(baseURL)
       .then(response => response.data)
       .then(data => setPersons(data))
   }, [])
   
+  const savePerson = (person) => {
+    axios.post(baseURL, person)
+    .then(response => response.data)
+    .then(data => console.log())
+  }
   const addName = (e, person) => {
     e.preventDefault()
     if (persons.filter(data => data.name === person.name).length > 0){
       alert(`${person.name} already added to phonebook`)
       return
     }
-     
+    savePerson(person)
     setPersons([...persons, { ...person, id : ++id}])
 
   }
