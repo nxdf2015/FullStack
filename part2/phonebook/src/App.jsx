@@ -7,37 +7,46 @@ import Filter from "./components/Filter"
 import  FormPerson  from "./components/FormPerson"
 import Persons from "./components/Persons"
 
-let id = 4
+import  phonebookService from "./phonebookService"
+
+ 
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   
   const [filter, setFilter] = useState("")
+   
 
-
- const baseURL = "http://localhost:3001/persons" 
- useEffect(() => {
-      axios.get(baseURL)
-      .then(response => response.data)
-      .then(data => setPersons(data))
+ 
+ useEffect(  () => {
+     
+       phonebookService.getAll()
+       .then(data => setPersons(data))
+       
+     
+        
   }, [])
   
-  const savePerson = (person) => {
-    axios.post(baseURL, person)
-    .then(response => response.data)
-    .then(data => console.log())
-  }
+  
   const addName = (e, person) => {
     e.preventDefault()
     if (persons.filter(data => data.name === person.name).length > 0){
       alert(`${person.name} already added to phonebook`)
       return
     }
-    savePerson(person)
-    setPersons([...persons, { ...person, id : ++id}])
+   phonebookService.addOne(person)
+   .then(person => setPersons([...persons, { ...person, id : person.id}]))
 
   }
+  
 
+  const handlerDelete = (id) => {
+    phonebookService.deleteOne(id)
+    .then(data => {
+       phonebookService.getAll()
+       .then(data => setPersons(data))
+    })
+  }
 
 
   const handlerFilter = (e) => {
@@ -59,10 +68,11 @@ const App = () => {
       
       <h2>Numbers</h2>
        
-      <Persons filter={filter} persons={persons}/>
+      <Persons handlerDelete={handlerDelete} filter={filter} persons={persons}/>
       
     </div>
   )
 }
 
 export default App
+ 
