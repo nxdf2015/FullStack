@@ -20,7 +20,6 @@ const App = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
   
-  
 
   const handlerVote = (id) => {
     const copyVotes = [... votes]
