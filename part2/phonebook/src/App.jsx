@@ -40,12 +40,15 @@ const App = () => {
   }
   
 
-  const handlerDelete = (id) => {
-    phonebookService.deleteOne(id)
-    .then(data => {
-       phonebookService.getAll()
-       .then(data => setPersons(data))
-    })
+  const handlerDelete = ({id, name}) => {
+      
+    if (confirm(`delete ${name} ? `)){
+        phonebookService.deleteOne(id)
+        .then(data => {
+          phonebookService.getAll()
+          .then(data => setPersons(data))
+        })
+    }
   }
 
 
