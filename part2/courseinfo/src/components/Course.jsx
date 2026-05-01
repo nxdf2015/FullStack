@@ -3,10 +3,10 @@ import Content from "./Content"
 import Total from "./Total"
 
 const Course = ({course}) =>  <div key={course.id}>
-      <Header course={course.name}/>
-      <Content parts={course.parts}  />
+      <Header   course={course.name}/>
+      <Content   parts={course.parts}  />
       
-      <Total parts={course.parts}/>
+      <Total   parts={course.parts}/>
     </div>
 
 
