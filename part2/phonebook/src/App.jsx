@@ -30,8 +30,14 @@ const App = () => {
   
   const addName = (e, person) => {
     e.preventDefault()
-    if (persons.filter(data => data.name === person.name).length > 0){
-      alert(`${person.name} already added to phonebook`)
+    const id  = persons.findIndex(data => data.name == person.name)
+     
+    if (persons[id] ){
+      if (confirm(`${person.name} is already added to the phonebook, replace the old number by the new one ?`)){
+         phonebookService.updateOne({...person,  id :persons[id].id}).then(data =>  {
+        phonebookService.getAll().then(data => setPersons(data)) } )
+       }
+
       return
     }
    phonebookService.addOne(person)
