@@ -16,7 +16,9 @@ const addOne = (person) => axios.post(baseURL, person).then(response => response
 
 const deleteOne  = (id) =>  axios.delete(`${baseURL}/${id}`)
 
-const updateOne = (person) => axios.put(`${baseURL}/${person.id}`, person).then(response => response.data)
+const updateOne = (person) => axios.put(`${baseURL}/${person.id}`, person, {
+    validateStatus : status => status <  400 
+}).then(response => response.data) 
 
 
 export default { getAll, addOne, deleteOne, updateOne}

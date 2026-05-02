@@ -1,10 +1,18 @@
 
 
+.error {
+  background-color: lightsalmon;
+  color : red;
+  font-weight: bold;
+  border : 2px solid red;
+  padding : 10px;
+  text-align : center;
+}
 .message {
   background-color: lightgreen;
   color : green;
   font-weight: bold;
-  border : 2px solid black;
+  border : 2px solid green;
   padding : 10px;
   text-align : center;
 }

@@ -10,13 +10,18 @@ import Persons from "./components/Persons"
 import  phonebookService from "./phonebookService"
 import Notification from './components/Notification'
  
+const StatutNotification = {
+  INFO : "info",
+  ERROR : "error"
+}
+  
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   
   const [filter, setFilter] = useState("")
   const [message, setMessage] = useState(null)
-
+  const [typeNotification, setTypeNotification] = useState(StatutNotification.INFO)
  
  useEffect(  () => {
      
@@ -27,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     if (message){
-      setTimeout(() => setMessage(null),5000)
+      setTimeout(() => {setMessage(null)},5000)
     }
   },[message])
   
@@ -40,11 +45,19 @@ const App = () => {
     if (persons[id] ){
       if (confirm(`${person.name} is already added to the phonebook, replace the old number by the new one ?`)){
          phonebookService.updateOne({...person,  id :persons[id].id})
-         .then(data =>  {
-        phonebookService.getAll().then(data => setPersons(data)) } )
+      
+         .then((data)=>  phonebookService.getAll().then(data => setPersons(data)) )
          .then(() => {
+          setTypeNotification(StatutNotification.INFO)
           setMessage(`number of ${person.name} replace by new number `)
          })
+          .catch(err => {
+          setTypeNotification(StatutNotification.ERROR)
+          setMessage(`Information of ${person.name} has already removed server`)
+          phonebookService.getAll().then(data => setPersons(data))
+         })
+         
+
        }
 
       return
@@ -53,6 +66,7 @@ const App = () => {
    phonebookService.addOne(person)
    .then(person => setPersons([...persons, { ...person, id : person.id}]))
     .then( () => {
+            setTypeNotification(StatutNotification.INFO)
             setMessage(`Added ${person.name} `)
         })
 
@@ -84,7 +98,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message}/>
+      <Notification message={message} statut={typeNotification}/>
       <Filter filter={filter} handlerFilter={handlerFilter}/>
 
       <FormPerson onSubmit={addName}/>

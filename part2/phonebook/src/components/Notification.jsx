@@ -1,12 +1,12 @@
 
 import  "../index.css"
 
-const Notification = ({message}) => {
+const Notification = ({message, statut }) => {
     if (message == null){
         return null
     }
     else {
-        return <div className="message">
+        return <div className={ statut === "error" ? "error" : "message"}>
             {message}
         </div>
     }
