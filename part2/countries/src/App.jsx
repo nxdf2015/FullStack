@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
 import Service from "./CountryService"
-import { FilterCountry } from "./components/FilterCountry"
+import  FilterCountry   from "./components/FilterCountry"
 
 function App() {
   const [country, setCountry] = useState("")

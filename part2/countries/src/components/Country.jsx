@@ -1,11 +1,11 @@
 
-export const Country = (country) => {
+  const  CountryDetails = (country) => {
 
   const { country: { name: { common }, languages, area, capital, flags: { png } } } = country;
 
   return <div>
 
-
+    
     <h1>{common} </h1>
     <p>Area {area} </p>
     <p>Capital {capital[0]}</p>
@@ -19,3 +19,6 @@ export const Country = (country) => {
   </div>;
 
 };
+
+
+export default CountryDetails
