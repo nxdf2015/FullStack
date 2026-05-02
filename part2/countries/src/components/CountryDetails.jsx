@@ -34,9 +34,9 @@ import weatherService from "../services/weatherService";
     <p>Weather in {common}</p>
     { weather ? 
     <div>
-    <p>Temperature  {weather.temp} </p>
+    <p>Temperature  {weather.temp} °C</p>
      <img src={weatherService.iconURL(weather.icon)}/>  
-    <p>Wind {weather.speed}</p>
+    <p>Wind {weather.speed} m/s</p>
   </div>
   : 
   null

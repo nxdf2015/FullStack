@@ -42,7 +42,7 @@ function App() {
   }
   return <div>
     <h1>Countries</h1>
-    load {countries.length}
+    load {countries.length} countries
       <div>
         <label>Find Countries
           <input type="text" value={country} onInput={handlerChange}/>
@@ -50,7 +50,6 @@ function App() {
         {message}
       </div>
       <div>
-    {filterCountry.length}
      <FilterCountry filterCountry={filterCountry}/>
       </div>
   </div>

@@ -4,7 +4,7 @@ import axios from "axios"
 const APIkey = import.meta.env.VITE_key
 
 
-const baseURL = (lat, lon) => `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`
+const baseURL = (lat, lon) => `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIkey}`
 
 const iconURL = (icon) => `https://openweathermap.org/payload/api/media/file/${icon}.png`
 
