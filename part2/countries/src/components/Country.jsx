@@ -1,24 +1,19 @@
 
-  const  CountryDetails = (country) => {
+import { useState } from "react"
 
-  const { country: { name: { common }, languages, area, capital, flags: { png } } } = country;
+import CountryDetails from "./CountryDetails"
 
-  return <div>
+const Country = ({country}) => {
+const [visibility, tooglevisibility] = useState(false)
+ 
 
-    
-    <h1>{common} </h1>
-    <p>Area {area} </p>
-    <p>Capital {capital[0]}</p>
-    <p>Languages</p>
-    <ul>
-      {Object.values(languages).map(language => <li key={language}>{language}</li>)}
-    </ul>
+return <div>
+  {country.name.common}<button onClick={() => tooglevisibility(!visibility)}>{ visibility ? "Hide" : "Show" }</button>
+  { visibility ? <CountryDetails country={country}/> : null } 
 
-    <img src={png} />
-
-  </div>;
-
-};
+</div>}
 
 
-export default CountryDetails
+
+
+export default Country
