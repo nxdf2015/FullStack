@@ -12,6 +12,14 @@ app.get("/api/persons", (request,response) => {
 })
 
 
+app.get("/api/info", (request, response) => {
+    const size = data.length
+    const date = Date()
+
+    response.json({size, date})
+})
+
+
 app.listen(PORT, () => 
 console.log(`server running on port ${PORT}`))
  
