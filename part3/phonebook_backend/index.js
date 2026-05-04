@@ -1,9 +1,12 @@
 
 
 const express = require("express")
-const data = require("./data")
+let  data = require("./data")
 
 const app = express()
+
+app.use(express.json())
+
 const PORT =3000
 
 app.get("/api/persons", (request,response) => {
@@ -31,11 +34,34 @@ app.get("/api/persons/:id", (request, response)=>{
     }
     else {
         response.status(404).end()
-
     }
 
 })
 
+app.delete("/api/persons/:id", (request, response) => {
+    const id = request.params.id 
+
+    data = data.filter(item => item.id !== id)
+    
+    response.status(204).end()
+})
+
+
+app.post("/api/persons", (request, response) => {
+  if (!request.body){
+    response.status(400).json({"error" : "content missing"})
+  }
+  else {
+
+      const body  = request.body 
+      
+      const id  = Math.floor(Math.random() * 10000 + 1)
+      const newItem = {name : body.name , number : body.number , id}
+      data.push(newItem)
+      
+      response.json(newItem)
+  }
+})
 
 
 app.listen(PORT, () => 

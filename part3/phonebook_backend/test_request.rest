@@ -15,3 +15,18 @@ GET http://localhost:3000/api/persons/2
 ### 
 
 GET http://localhost:3000/api/persons/8
+
+
+###
+
+DELETE http://localhost:3000/api/persons/2
+
+
+###
+POST http://localhost:3000/api/persons  
+Content-Type: application/json
+
+{
+    "name" : "Xavier" ,
+    "number" : "123456"
+}
