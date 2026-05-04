@@ -9,6 +9,8 @@ app.use(express.json())
 
 const PORT =3000
 
+ 
+
 app.get("/api/persons", (request,response) => {
     response.json(data)
 
@@ -48,17 +50,25 @@ app.delete("/api/persons/:id", (request, response) => {
 
 
 app.post("/api/persons", (request, response) => {
+console.log(data)
   if (!request.body){
     response.status(400).json({"error" : "content missing"})
   }
-  else {
-
-      const body  = request.body 
+  else if (!(request.body.name && request.body.number)){
+    response.status(400).json({"error" : "name or number missing" })
+  }
+  else if (data.filter(item => item.name === request.body.name).length == 1){
+    response.status(400).json({ "error" : "name must be unique"})
+  }
+  else
+    {
+        
+      const {name , number } = request.body
       
       const id  = Math.floor(Math.random() * 10000 + 1)
-      const newItem = {name : body.name , number : body.number , id}
+      const newItem = {name   , number  , id}
       data.push(newItem)
-      
+
       response.json(newItem)
   }
 })
