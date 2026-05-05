@@ -11,7 +11,19 @@ app.use(express.json())
 
 const PORT =3000
 
+
+
+morgan.token("post", function(req,res){
+  if (req.method == "POST"){
+    const body = req.body
+
+    return JSON.stringify(body)
+  }
+})
+
 app.use(morgan("tiny"))
+app.use(morgan(":post"))
+
 
 
 app.get("/api/persons", (request,response) => {
@@ -53,7 +65,7 @@ app.delete("/api/persons/:id", (request, response) => {
 
 
 app.post("/api/persons", (request, response) => {
-console.log(data)
+
   if (!request.body){
     response.status(400).json({"error" : "content missing"})
   }
