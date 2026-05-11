@@ -42,7 +42,7 @@ const App = () => {
     const id  = persons.findIndex(data => data.name == person.name)
     
     //person in phone book
-    if (persons[id] ){
+    if (id !== -1 ){
       if (confirm(`${person.name} is already added to the phonebook, replace the old number by the new one ?`)){
          phonebookService.updateOne({...person,  id :persons[id].id})
       

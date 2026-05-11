@@ -2,6 +2,7 @@
 
 const express = require("express")
 const morgan = require("morgan")
+const cors = require("cors")
 
 let  data = require("./data")
 
@@ -9,7 +10,7 @@ const app = express()
 
 app.use(express.json())
 
-const PORT =3000
+const PORT =process.env.PORT || 3000
 
 
 
@@ -21,6 +22,7 @@ morgan.token("post", function(req,res){
   }
 })
 
+app.use(cors())
 app.use(morgan("tiny"))
 app.use(morgan(":post"))
 
@@ -82,6 +84,7 @@ app.post("/api/persons", (request, response) => {
       
       const id  = Math.floor(Math.random() * 10000 + 1)
       const newItem = {name   , number  , id}
+      
       data.push(newItem)
 
       response.json(newItem)
