@@ -8,7 +8,7 @@ const PORT = 3000  // phone_book backend
 
 
 
-const baseURL = `http://localhost:${PORT}/api/persons` 
+const baseURL = `/api/persons` 
 
  
 
